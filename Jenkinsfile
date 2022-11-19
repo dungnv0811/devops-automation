@@ -5,8 +5,8 @@ pipeline {
     }
     stages {
         stage('Build Maven') {
-            echo "Pulling changes from the branch ${params.branch}"
             steps {
+                echo "Pulling changes from the branch ${params.branch}"
                 checkout([$class: 'GitSCM', branches: [[name: "*/${params.branch}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dungnv0811/devops-automation']]])
                 sh 'mvn clean install'
             }
